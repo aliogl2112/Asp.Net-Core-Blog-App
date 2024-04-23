@@ -18,6 +18,7 @@ builder.Services.AddDbContext<BlogContext>(options =>
 
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
 builder.Services.AddScoped<ITagRepository, EfTagRepository>();
+builder.Services.AddScoped<ICommentRepository, EfCommentRepository>();
 //her sanal nesneye(IPostRepository) kar��l�k ger�ek (EfPostRepository) nesne olu�tur. AddScoped her http iste�inde ayn� nesnenin kullan�lmas�n� sa�lar.
 
 var app = builder.Build();
@@ -37,10 +38,20 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+//localhost://posts/react-dersleri
 app.MapControllerRoute(
     name: "post_details",
-    pattern: "posts/{url}",
-    defaults:new{controller="Posts",action="Detail"}); //slug url anlamına geliyor
+    pattern: "posts/details/{url}",
+    defaults:new{controller="Posts",action="Detail"}
+    ); //slug url anlamına geliyor
+
+//localhost://posts/tag/web-programlama
+app.MapControllerRoute(
+    name: "posts_by_tag",
+    pattern: "posts/tag/{tag}",
+    defaults:new{controller="Posts",action="Index"}
+    );
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

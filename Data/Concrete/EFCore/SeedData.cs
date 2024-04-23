@@ -17,11 +17,11 @@ namespace BlogApp.Data.Concrete.EFCore
                 if (!context.Tags.Any()) //Tags tablosunda kayıt olup olmadığını kontrol eder
                 {
                     context.Tags.AddRange(
-                        new Tag { Text = "Web Programlama",URL="web-programlama"},
-                        new Tag { Text = "Backend",URL="backend"},
-                        new Tag { Text = "Frontend",URL="frontend"},
-                        new Tag { Text = "Fullstack",URL="fullstack"},
-                        new Tag { Text = "PHP",URL="php"}
+                        new Tag { Text = "Web Programlama",URL="web-programlama",Color=TagColors.danger},
+                        new Tag { Text = "Backend",URL="backend",Color=TagColors.primary},
+                        new Tag { Text = "Frontend",URL="frontend",Color=TagColors.secondary},
+                        new Tag { Text = "Fullstack",URL="fullstack",Color=TagColors.success},
+                        new Tag { Text = "PHP",URL="php",Color=TagColors.warning}
                     );
                     context.SaveChanges();
                 }
@@ -29,8 +29,8 @@ namespace BlogApp.Data.Concrete.EFCore
                 if (!context.Users.Any()) //Users tablosunda kayıt olup olmadığını kontrol eder
                 {
                     context.Users.AddRange(
-                        new User { Name = "aliogul", Image="p1.jpg"},
-                        new User { Name = "busecevik", Image = "p2.jpg" }
+                        new User { Name = "Ali Oğul", Image="p1.jpg"},
+                        new User { Name = "Buse Çevik", Image = "p2.jpg" }
                     );
                     context.SaveChanges();
                 }
@@ -47,6 +47,20 @@ namespace BlogApp.Data.Concrete.EFCore
                           PublishedOn=DateTime.Now.AddDays(-10),
                           Tags=context.Tags.Take(3).ToList(),
                           UserID = 1,
+                          Comments = new List<Comment>{
+                            new Comment
+                              {
+                                  Text="İyi bir kurs.",
+                                  PublishedOn=DateTime.Now, 
+                                  UserID=1
+                              },
+                              new Comment
+                              {
+                                  Text="Faydalı bir kurs.",
+                                  PublishedOn=DateTime.Now.AddDays(-20), 
+                                  UserID=2
+                              },
+                          }
                         },
                         new Post
                         {

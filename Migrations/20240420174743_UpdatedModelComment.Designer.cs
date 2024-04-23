@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240402204813_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240420174743_UpdatedModelComment")]
+    partial class UpdatedModelComment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,9 @@ namespace BlogApp.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("URL")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
@@ -86,7 +89,13 @@ namespace BlogApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("Color")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("URL")
                         .HasColumnType("longtext");
 
                     b.HasKey("ID");
