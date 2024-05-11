@@ -57,6 +57,7 @@ namespace BlogApp.Controllers
                 }
             };
             _commentRepository.CreateComment(entity);
+
             return Redirect("/posts/details/"+URL);
             // return RedirectToRoute("post-details",new{url=URL});
         }

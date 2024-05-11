@@ -14,6 +14,7 @@ namespace BlogApp.Data.Concrete.EFCore{
         public void CreateComment(Comment comment)
         {
             _context.Comments.Add(comment);
+            _context.SaveChanges();
         }
     }
 }
